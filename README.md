@@ -40,6 +40,8 @@ Upload sequencing data into Galaxy
     library_import_dir = /some_local_directory_of_files
     ```
 
+    Use `library_import_dir = path-to-local-galaxy-kickstart-repo/test-data/`
+
     The setting for `library_import_dir` should be a directory that contains files or other directories, the contents of which can be selected for upload to the Data Library.
 
     :warning: Copying datasets or not - Galaxy admin interface
