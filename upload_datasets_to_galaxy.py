@@ -20,8 +20,7 @@ def upload_datasets_to_galaxy():
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    #galaxy_config = config['Galaxy']
-    print(config.get('Galaxy', 'url'))
+    galaxy_config = config['Galaxy']
 
     gi = GalaxyInstance(url=galaxy_config['url'], key=galaxy_config['api-key'])
 
