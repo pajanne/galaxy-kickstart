@@ -9,39 +9,43 @@ Upload sequencing data into Galaxy
 
 ## How to run this feature
 
-1. Galaxy requires Python 2.7 To check your python version, run:
+1. Galaxy requires Python 2.7, to check your python version, run:
 
     ```Bash
     $ python -V
     Python 2.7.3
     ```
-    
+    Install Galaxy release_16.04:
+
+    ```Bash
+    $ sh get-galaxy.sh
+    ```
+
     Start Galaxy:
-    
+
     ```Bash
     $ sh run.sh
     ```
-    
-    Once Galaxy completes startup, you should be able to view Galaxy in your
-    browser at:
-    
+
+    Once Galaxy completes startup, you should be able to view Galaxy in your browser at:
+
     http://localhost:8080
 
 2. Configure Galaxy for Data Libraries
 
     The desired directory for this option must be specified in the Galaxy configuration file config/galaxy.ini.
-    
+
     ```
     # Directories of files contained in the following directory can be uploaded to a library from the Admin view
     library_import_dir = /some_local_directory_of_files
     ```
-    
+
     The setting for `library_import_dir` should be a directory that contains files or other directories, the contents of which can be selected for upload to the Data Library.
-    
-    
+
+
     :warning: Copying datasets or not - Galaxy admin interface
     > If a checkbox labeled "Copy data into Galaxy?" is checked, it will prevent Galaxy from copying data to its files directory. This is useful for large library datasets that live in their own managed locations on the filesystem, and will prevent the existence of duplicate copies of datasets. However, using this feature requires administrators to take responsibility for managing these files - moving or removing the data from its Galaxy-external location will render these datasets invalid within Galaxy.
-    
+
     > Also, when the "Copy data into Galaxy?" checkbox is checked, any symbolic links encountered in the chosen import directory will be made absolute and dereferenced once. This allows administrators to link large datasets to the import directory rather than having to make copies of the files, and these links can be deleted after importing. Only the first symlink (the one in the import directory itself) is dereferenced, all others remain.
 
   More informations about Uploading Data Libraries here: https://wiki.galaxyproject.org/Admin/DataLibraries/UploadingLibraryFiles
