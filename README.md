@@ -51,6 +51,18 @@ Upload sequencing data into Galaxy
 
   More informations about Uploading Data Libraries here: https://wiki.galaxyproject.org/Admin/DataLibraries/UploadingLibraryFiles
 
+  For BioBlen's method to work, the Galaxy instance must have the `allow_library_path_paste` option set to True in the `config/galaxy.ini` configuration file.`
+
+  ```
+  # Add an option to the admin library upload tool allowing admins to paste
+  # filesystem paths to files and directories in a box, and these paths will be
+  # added to a library.  Set to True to enable.  Please note the security
+  # implication that this will give Galaxy Admins access to anything your Galaxy
+  # user has access to.
+  allow_library_path_paste = True
+
+  ```
+
   Restart Galaxy:
   ```Bash
   $ sh run.sh --restart
