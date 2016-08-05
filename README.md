@@ -24,7 +24,7 @@ Upload sequencing data into Galaxy
     Start Galaxy:
 
     ```Bash
-    $ sh run.sh
+    $ sh run.sh --daemon
     ```
 
     Once Galaxy completes startup, you should be able to view Galaxy in your browser at:
@@ -51,7 +51,7 @@ Upload sequencing data into Galaxy
 
   Restart Galaxy:
   ```Bash
-  $ sh run.sh
+  $ sh run.sh --restart
   ```
 
 3. Create admin user
