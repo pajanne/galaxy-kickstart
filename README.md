@@ -144,6 +144,11 @@ CATEGORY	TOTAL_READS	PF_READS	PCT_PF_READS	PF_NOISE_READS	PF_READS_ALIGNED	PCT_P
 UNPAIRED	16997058	16997058	1	0	0	0	0	0	0	0	0	0	0	0	50	0	0	0	0	0	0.01539			
 ```
 
+## Reference documentation
+
+- [BioBlend](http://bioblend.readthedocs.io/)
+- [Galaxy: Uploading Files to a Data Library](https://wiki.galaxyproject.org/Admin/DataLibraries/UploadingLibraryFiles#Upload_directory_of_files#Upload_files_from_filesystem_paths#Upload_files)
+
 ## Existing projects to get inspiration from...
 
 - bcbio-nextgen - Validated, scalable, community developed variant calling, RNA-seq and small RNA analysis https://github.com/chapmanb/bcbio-nextgen
