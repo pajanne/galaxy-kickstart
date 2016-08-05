@@ -55,6 +55,7 @@ Upload sequencing data into Galaxy
   ```
 
 3. Create admin user
+
   In the web interface, go to User > Register and create an `admin` account with an associated email address `admin@admin.org` that should be entered in the `config/galaxy.ini` as admin users.
 
   ```
