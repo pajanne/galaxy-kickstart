@@ -2,6 +2,8 @@
 
 ## Usage
 
+Upload FASTQ and or BAM files from the command line based on project name and/or library name from information is stored in the LiMS database.
+
 ```
 usage: java org.cruk.pipeline.kickstart.AnalysisPipelineKickstart <options>
     -a,--aligner <aligner>                     The aligner to use for
