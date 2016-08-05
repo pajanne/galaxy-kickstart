@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import argparse
-# from bioblend.galaxy import GalaxyInstance
 import configparser
+from bioblend.galaxy import GalaxyInstance
 
 def upload_datasets_to_galaxy():
     # Arguments initialization
@@ -19,11 +19,12 @@ def upload_datasets_to_galaxy():
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    galaxy_config = config['Galaxy']
+    #galaxy_config = config['Galaxy']
+    print(config.get('Galaxy', 'url'))
 
-    # gi = GalaxyInstance(url=galaxy_config['url'], key=galaxy_config['api-key'])
+    gi = GalaxyInstance(url="%s" % config.get('Galaxy', 'url'), key=config.get('Galaxy', 'api-key'))
 
-    # print(gi.histories.get_histories())
+    print(gi.histories.get_histories())
 
 
 if __name__ == "__main__":

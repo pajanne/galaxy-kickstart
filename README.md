@@ -78,7 +78,26 @@ Upload sequencing data into Galaxy
 
   In the web interface, go to User > API Keys and click on 'Generate a new key now'
   Copy/Paste this key into the `config.ini` file.
-   
+
+5. Install dependencies
+
+  Check you are have python3 installed!
+
+  ```Bash
+  $ python3 --version
+  Python 3.5.2
+  $ virtualenv -p python3 venv
+  $ source venv/bin/activate
+  $ python --version
+  Python 3.5.2
+  $ pip install -r requirements.txt
+  ```
+
+6. Run script
+
+  ```Bash
+  python upload_datasets_to_galaxy.py
+  ```
 
 ## Sequencing data location
 Currently all sequencing data files are located on the galaxy server in `/staging` under folders of this kind `/staging/160802_D00281L_0127_C9NPBANXX/fastq/`.
