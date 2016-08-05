@@ -33,7 +33,7 @@ Upload sequencing data into Galaxy
 
 2. Configure Galaxy for Data Libraries
 
-    The desired directory for this option must be specified in the Galaxy configuration file config/galaxy.ini.
+    The desired directory for this option must be specified in the Galaxy configuration file `config/galaxy.ini`, copy sample file from `config/galaxy.ini.sample`.
 
     ```
     # Directories of files contained in the following directory can be uploaded to a library from the Admin view
@@ -42,13 +42,34 @@ Upload sequencing data into Galaxy
 
     The setting for `library_import_dir` should be a directory that contains files or other directories, the contents of which can be selected for upload to the Data Library.
 
-
     :warning: Copying datasets or not - Galaxy admin interface
     > If a checkbox labeled "Copy data into Galaxy?" is checked, it will prevent Galaxy from copying data to its files directory. This is useful for large library datasets that live in their own managed locations on the filesystem, and will prevent the existence of duplicate copies of datasets. However, using this feature requires administrators to take responsibility for managing these files - moving or removing the data from its Galaxy-external location will render these datasets invalid within Galaxy.
 
     > Also, when the "Copy data into Galaxy?" checkbox is checked, any symbolic links encountered in the chosen import directory will be made absolute and dereferenced once. This allows administrators to link large datasets to the import directory rather than having to make copies of the files, and these links can be deleted after importing. Only the first symlink (the one in the import directory itself) is dereferenced, all others remain.
 
   More informations about Uploading Data Libraries here: https://wiki.galaxyproject.org/Admin/DataLibraries/UploadingLibraryFiles
+
+  Restart Galaxy:
+  ```Bash
+  $ sh run.sh
+  ```
+
+3. Create admin user
+  In the web interface, go to User > Register and create an `admin` account with an associated email address `admin@admin.org` that should be entered in the `config/galaxy.ini` as admin users.
+
+  ```
+  # Administrative users - set this to a comma-separated list of valid Galaxy
+  # users (email addresses).  These users will have access to the Admin section
+  # of the server, and will have access to create users, groups, roles,
+  # libraries, and more.  For more information, see:
+  #   https://wiki.galaxyproject.org/Admin/Interface
+  admin_users = admin@admin.org
+  ```
+
+  Restart Galaxy:
+  ```Bash
+  $ sh run.sh
+  ```
 
 
 ## Sequencing data location
