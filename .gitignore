@@ -90,3 +90,6 @@ ENV/
 
 # Test data
 test-data/staging/
+
+# Galaxy dist install directory
+galaxy-dist/
