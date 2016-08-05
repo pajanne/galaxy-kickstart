@@ -40,6 +40,8 @@ Upload sequencing data into Galaxy
     library_import_dir = /some_local_directory_of_files
     ```
 
+    Use `library_import_dir = path-to-local-galaxy-kickstart-repo/test-data/`
+
     The setting for `library_import_dir` should be a directory that contains files or other directories, the contents of which can be selected for upload to the Data Library.
 
     :warning: Copying datasets or not - Galaxy admin interface
@@ -48,6 +50,18 @@ Upload sequencing data into Galaxy
     > Also, when the "Copy data into Galaxy?" checkbox is checked, any symbolic links encountered in the chosen import directory will be made absolute and dereferenced once. This allows administrators to link large datasets to the import directory rather than having to make copies of the files, and these links can be deleted after importing. Only the first symlink (the one in the import directory itself) is dereferenced, all others remain.
 
   More informations about Uploading Data Libraries here: https://wiki.galaxyproject.org/Admin/DataLibraries/UploadingLibraryFiles
+
+  For BioBlen's method to work, the Galaxy instance must have the `allow_library_path_paste` option set to True in the `config/galaxy.ini` configuration file.`
+
+  ```
+  # Add an option to the admin library upload tool allowing admins to paste
+  # filesystem paths to files and directories in a box, and these paths will be
+  # added to a library.  Set to True to enable.  Please note the security
+  # implication that this will give Galaxy Admins access to anything your Galaxy
+  # user has access to.
+  allow_library_path_paste = True
+
+  ```
 
   Restart Galaxy:
   ```Bash
@@ -72,6 +86,30 @@ Upload sequencing data into Galaxy
   $ sh run.sh
   ```
 
+4. Create API key
+
+  In the web interface, go to User > API Keys and click on 'Generate a new key now'
+  Copy/Paste this key into the `config.ini` file.
+
+5. Install dependencies
+
+  Check you are have python3 installed!
+
+  ```Bash
+  $ python3 --version
+  Python 3.5.2
+  $ virtualenv -p python3 venv
+  $ source venv/bin/activate
+  $ python --version
+  Python 3.5.2
+  $ pip install -r requirements.txt
+  ```
+
+6. Run script
+
+  ```Bash
+  python upload_datasets_to_galaxy.py
+  ```
 
 ## Sequencing data location
 Currently all sequencing data files are located on the galaxy server in `/staging` under folders of this kind `/staging/160802_D00281L_0127_C9NPBANXX/fastq/`.
