@@ -93,3 +93,6 @@ test-data/staging/
 
 # Galaxy dist install directory
 galaxy-dist/
+
+# Remove config.ini from being tracked
+config.ini
