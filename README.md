@@ -74,6 +74,11 @@ Upload sequencing data into Galaxy
   $ sh run.sh
   ```
 
+4. Create API key
+
+  In the web interface, go to User > API Keys and click on 'Generate a new key now'
+  Copy/Paste this key into the `config.ini` file.
+   
 
 ## Sequencing data location
 Currently all sequencing data files are located on the galaxy server in `/staging` under folders of this kind `/staging/160802_D00281L_0127_C9NPBANXX/fastq/`.
