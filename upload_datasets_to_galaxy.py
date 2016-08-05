@@ -22,7 +22,7 @@ def upload_datasets_to_galaxy():
 
     galaxy_config = config['Galaxy']
 
-    gi = GalaxyInstance(url='http://127.0.0.1:8080', key='5e8cc5748922c598c1aa6ec9e605780f')
+    gi = GalaxyInstance(url=galaxy_config['url'], key=galaxy_config['api-key'])
 
     name_folder_test = '160802_D00281L_0127_C9NPBANXX'
     path_folder_test = './test-data/staging/' + name_folder_test

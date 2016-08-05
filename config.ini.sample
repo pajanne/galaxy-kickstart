@@ -1,0 +1,3 @@
+[Galaxy]
+url = http://my_galaxy_ip:galaxy_port
+api-key = my_key
