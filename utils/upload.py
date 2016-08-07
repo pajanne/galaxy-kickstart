@@ -91,32 +91,6 @@ def upload_datasets_to_galaxy(args, galaxy_instance=None):
     print("All done,")
     print("Bye!")
 
-    # TODO: Check the library does already exist
-    # Create the library with the name equal to the folder name
-    # and description 'Library' + folder_name
-    """
-
-    # Upload the data in the library just created
-    all_full_path_string = ''
-    for file in os.listdir(path_to_fastq_folder_test):
-        full_path_file = os.path.join(path_to_fastq_folder_test, file)
-        all_full_path_string = '\n'.join([all_full_path_string, full_path_file])
-
-    list_of_files = '\n'.join(os.path.join(os.listdir(path_to_fastq_folder_test)))
-    unknow_return = gi.libraries.upload_from_galaxy_filesystem(
-            library_id=dict_library_test.get('id'),
-            filesystem_paths=list_of_files,
-            file_type='auto',
-            link_data_only='link_to_files',
-            )
-
-    print(unknow_return)
-    # TODO: Check if no new files, else upload them
-    # print("Already there! Skipping {0}".format(name_folder_test))
-    """
-    #print(gi.histories.get_histories())
-
-
 if __name__ == "__main__":
     print("Please see the option to call this script from the main program. Quiting...")
     sys.exit(-1)
