@@ -107,8 +107,16 @@ Upload sequencing data into Galaxy
 
 6. Run script
 
+  Activate your virtual environment first, and make sure Galaxy is running.
+
+  - To upload libraries
   ```Bash
-  python upload_datasets_to_galaxy.py
+  python main.py upload --libraries-root test-data/staging/
+  ```
+
+  - To delete all existing shared libraries
+  ```Bash
+  python main.py delete
   ```
 
 ## Sequencing data location
