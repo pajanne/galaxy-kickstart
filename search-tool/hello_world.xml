@@ -1,0 +1,26 @@
+<tool id="hello_world" name="Hello World from Planemo" version="0.1.0">
+    <requirements>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    <command><![CDATA[
+        python hello_world.py $input > $output
+    ]]></command>
+    <inputs>
+      <param name="input" type="data" format="txt" />
+    </inputs>
+    <outputs>
+      <data name="output" format="txt" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="test.txt"/>
+            <output name="output" file="hello.txt"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        Hello World Help!
+    ]]></help>
+    <citations />
+</tool>
