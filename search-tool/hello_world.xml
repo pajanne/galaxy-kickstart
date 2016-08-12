@@ -6,11 +6,20 @@
     </stdio>
     <code file="get_SLX_libraries.py"/>
     <command><![CDATA[
-        python $__tool_directory__/hello_world.py $input > $output
+        python $__tool_directory__/import.py
+        --galaxy-url $galaxy_url
+        --api_keys $api_keys
+        --fastq_files_list $slx_library_fastq_file
     ]]></command>
     <inputs>
+        <param name="galaxy_url" type="text"
+               label="URL of the Galaxy to import these data (local only)"/>
+        <param name="api_keys" type="text"
+               label="API keys of the user you want to import the files into"/>
         <!-- /home/galaxy/Dev/galaxy_kickstart/test-data/staging -->
-        <param name="slx_libraries_path" type="text" />
+        <param name="slx_libraries_path" type="text"
+               label="Path to your folder containing the SLX librairies"
+            />
         <param name="slx_library" type="select"
                refresh_on_change="True"
                label="Get SLX libraries"
@@ -18,6 +27,7 @@
         <param name="slx_library_fastq_file" type="select"
                label="Get files in the chosen library"
                refresh_on_change="True"
+               multiple="True"
                dynamic_options="get_SLX_library_fastq_files(slx_library_path=slx_library)"/>
     </inputs>
     <outputs>
