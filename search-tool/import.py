@@ -23,26 +23,18 @@ def main():
    api_keys = args.api_keys
    fastq_files_list_not_reconstructed = args.fastq_files_list
 
-   print("Galaxy URL: {0}".format(galaxy_url))
-   print("API Keys: {0}".format(api_keys))
-   print("Fastq files before reconstruction: {0}".format(fastq_files_list_not_reconstructed))
-
+   # Recontruction of the list separated by ','
    fastq_files_list = fastq_files_list_not_reconstructed.split(',')
 
-   print("Fastq files after reconstruction: {0}".format(fastq_files_list))
-
-   """
-   URL: http://127.0.0.1:8080/
-   API_KEY: 5e8cc5748922c598c1aa6ec9e605780f
-   """
-
+   # Creation of the Galaxy Bioblend object
    gi = galaxy.GalaxyInstance(url=galaxy_url, key=api_keys)
 
+   # We want, by default, to import in the history of the user
    current_history_id = gi.histories.get_current_history()['id']
 
+   # Add each file in the current history of the user (more precisely in the API Key user history
    for fastq_file_path in fastq_files_list:
       # Remove the end '/'
-      sys.stderr.write(fastq_file_path)
       fastq_file_path = os.path.normpath(fastq_file_path)
       gi.tools.upload_file(fastq_file_path, current_history_id)
 
