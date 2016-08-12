@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import bioblend
 import logging
 import os
@@ -20,23 +18,26 @@ def find_SLX_libraries(SLX_libraries_path='.'):
                                     os.path.abspath(os.path.join(SLX_libraries_path, library_name)),
                                     True)
                                     for library_name in list_SLX_libraries]
-
+    log.debug("Result data in find_SLX_libraries from {0}: {1}".format(SLX_libraries_path, list_SLX_libraries_formatted))
     return list_SLX_libraries_formatted
 
 def get_SLX_library_fastq_files(slx_library_path='.'):
-    log.debug(slx_library_path)
+    log.debug("Parameter in get_SLX_library_fastq_files: {0}".format(slx_library_path))
     slx_fastq_library_path = os.path.join(slx_library_path, 'fastq')
 
-    fa_gz_list_checker = ['fa', 'gz']
+    fa_gz_list_checker = ['fq', 'gz']
     def get_last_two_extensions(string):
         return string.split('.')[-2:]
 
-    # TODO: Rework this with a loop
-    list_SLX_library_fastq_files = [(entry, os.path.isfile(os.path.join(slx_library_path, entry)))
-                                    for entry in os.listdir(slx_fastq_library_path)
-                                    if os.path.isfile(os.path.join(slx_library_path, entry)) and
-                                    get_last_two_extensions(entry).equals(fa_gz_list_checker)]
+    list_SLX_library_fastq_files = []
 
-    list_SLX_library_fastq_files_formatted = [(entry.name, entry.path, True)
-                                               for entry in list_SLX_library_fastq_files]
-    return list_SLX_library_fastq_files_formatted
+    for entry in os.listdir(slx_fastq_library_path):
+        full_entry_path = os.path.join(slx_fastq_library_path, entry)
+        if os.path.isfile(full_entry_path):
+            # TODO: This is ugly...need to change that asap
+            two_exts = get_last_two_extensions(entry)
+            if two_exts == fa_gz_list_checker:
+                list_SLX_library_fastq_files.append((entry, full_entry_path, True))
+
+    log.debug("Result in get_SLX_library_fastq_files: {0}".format(list_SLX_library_fastq_files))
+    return list_SLX_library_fastq_files
