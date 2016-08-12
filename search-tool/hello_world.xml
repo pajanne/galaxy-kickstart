@@ -1,17 +1,27 @@
-<tool id="hello_world" name="Hello World from Planemo" version="0.1.0">
+<tool id="seq_lib_finder" name="Search Tool - Sequence Library Finder" version="0.1.0">
     <requirements>
     </requirements>
     <stdio>
-        <exit_code range="1:" />
+        <exit_code range="1:"/>
     </stdio>
+    <code file="get_SLX_libraries.py"/>
     <command><![CDATA[
-        python hello_world.py $input > $output
+        python $__tool_directory__/hello_world.py $input > $output
     ]]></command>
     <inputs>
-      <param name="input" type="data" format="txt" />
+        <!-- /home/galaxy/Dev/galaxy_kickstart/test-data/staging -->
+        <param name="slx_libraries_path" type="text" />
+        <param name="slx_library" type="select"
+               refresh_on_change="True"
+               label="Get SLX libraries"
+               dynamic_options="find_SLX_libraries(slx_libraries_path)"/>
+        <param name="slx_library_fastq_file" type="select"
+               label="Get files in the chosen library"
+               refresh_on_change="True"
+               dynamic_options="get_SLX_library_fastq_files(slx_library_path=slx_library)"/>
     </inputs>
     <outputs>
-      <data name="output" format="txt" />
+        <data name="output" format="txt"/>
     </outputs>
     <tests>
         <test>
@@ -22,5 +32,5 @@
     <help><![CDATA[
         Hello World Help!
     ]]></help>
-    <citations />
+    <citations/>
 </tool>
