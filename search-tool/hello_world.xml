@@ -30,7 +30,10 @@
         </test>
     </tests>
     <help><![CDATA[
-        Hello World Help!
+        To use this tool:
+        1. Enter the location of your SLX folders
+        2. Select the folder where are your fastq files
+        3. Select the files to add the the history
     ]]></help>
     <citations/>
 </tool>
