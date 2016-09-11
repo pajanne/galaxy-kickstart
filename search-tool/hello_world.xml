@@ -20,7 +20,7 @@
         <param name="slx_libraries_path" type="text"
                label="Path to your folder containing the SLX librairies"
             />
-        <param name="slx_library" type="select"
+        <param name="SLX_library" type="select"
                refresh_on_change="True"
                label="Get SLX libraries"
                dynamic_options="find_SLX_libraries(slx_libraries_path)"/>
@@ -28,7 +28,7 @@
                label="Get files in the chosen library"
                refresh_on_change="True"
                multiple="True"
-               dynamic_options="get_SLX_library_fastq_files(slx_library_path=slx_library)"/>
+               dynamic_options="get_SLX_library_fastq_files(SLX_library_path=SLX_library)"/>
     </inputs>
     <outputs>
         <data name="output" format="txt"/>
