@@ -25,7 +25,7 @@ $ python -V
 Python 2.7.3
 ```
 
-Install Galaxy release_16.04:
+Install Galaxy release_16.04 (not working with 16.07):
 
 ```Bash
 $ sh get-galaxy.sh
