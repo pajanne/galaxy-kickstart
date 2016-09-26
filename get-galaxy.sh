@@ -20,4 +20,4 @@ hash git 2>/dev/null && echo "Fine! Git installed." || { echo >&2 "Git not insta
 rm -rf $GALAXY_HOME
 git clone https://github.com/galaxyproject/galaxy.git $GALAXY_HOME
 cd $GALAXY_HOME
-git checkout -b release_16.04
+git checkout -b release_16.04 origin/release_16.04

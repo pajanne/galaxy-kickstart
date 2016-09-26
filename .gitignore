@@ -96,3 +96,7 @@ galaxy-dist/
 
 # Remove config.ini from being tracked
 config.ini
+
+# Output from tools
+*_output.html
+*_output.json

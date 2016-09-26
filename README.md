@@ -12,7 +12,7 @@ Upload sequencing data into Galaxy
 1. Galaxy requires Python 2.7, to check your python version, run:
 
     ```Bash
-    $ python -V
+    $ python --version
     Python 2.7.3
     ```
     Install Galaxy release_16.04:
@@ -24,7 +24,9 @@ Upload sequencing data into Galaxy
     Start Galaxy:
 
     ```Bash
+    cd galaxy-dist
     $ sh run.sh --daemon
+    tail -f paster.log
     ```
 
     Once Galaxy completes startup, you should be able to view Galaxy in your browser at:
