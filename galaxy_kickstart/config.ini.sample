@@ -1,0 +1,6 @@
+[Galaxy]
+url = http://galaxy_ip:galaxy_port
+api-key = admin_galaxy_key
+[Data]
+library_root = /path/to/your/sequencing/run/folders
+galaxy_library_root = Sequencing
