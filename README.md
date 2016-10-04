@@ -7,13 +7,13 @@ Upload sequencing data into Galaxy
 - write a tool that search for FASTQ/BAM files of certain projects or library identifiers (SLX-IDs) and import them into Galaxy
 - run a simple RNA-Seq workflow on the data imported in Galaxy using the in-house cluster
 
-## How to run this feature
+## How to test this tool
 
 1. Galaxy requires Python 2.7, to check your python version, run:
 
     ```Bash
     $ python --version
-    Python 2.7.3
+    Python 2.7.11
     ```
     Install Galaxy release_16.04:
 
@@ -88,37 +88,47 @@ Upload sequencing data into Galaxy
   $ sh run.sh
   ```
 
-4. Create API key
+4. Generate test data
+
+  By running:
+  ```Bash
+  $ sh create-test-data.sh
+  ```
+
+5. Create `galaxy_kickstart/config.ini` file
+
+  By copying the sample file from `galaxy_kickstart/config.ini.sample`, and by filling in information specific to your system
+  ```
+  [Galaxy]
+  url = http://127.0.0.1:8080/
+  api-key = admin_galaxy_key
+  [Data]
+  library_root = /path/to/your/test-data/staging/
+  galaxy_library_root = Sequencing
+  ```
+
+6. Create API key
 
   In the web interface, go to User > API Keys and click on 'Generate a new key now'
-  Copy/Paste this key into the `config.ini` file.
+  Copy/Paste this key into the `galaxy_kickstart/config.ini` file on line `api-key = admin_galaxy_key`.
 
-5. Install dependencies
-
-  Check you are have python3 installed!
+7. Install dependencies
 
   ```Bash
-  $ python3 --version
-  Python 3.5.2
-  $ virtualenv -p python3 venv
-  $ source venv/bin/activate
   $ python --version
-  Python 3.5.2
+  Python 2.7.11
+  $ virtualenv venv
+  $ source venv/bin/activate
   $ pip install -r requirements.txt
   ```
 
-6. Run script
+8. Run script
 
   Activate your virtual environment first, and make sure Galaxy is running.
 
-  - To upload libraries
+  - To upload sequencing library SLX-12203 into Galaxy
   ```Bash
-  python main.py upload --libraries-root test-data/staging/
-  ```
-
-  - To delete all existing shared libraries
-  ```Bash
-  python main.py delete
+  python kickstart.py --library SLX-12203
   ```
 
 ## Sequencing data location
