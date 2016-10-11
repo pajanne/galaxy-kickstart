@@ -1,0 +1,36 @@
+<tool id="kickstart" name="Upload FASTQ files" version="0.1.1">
+    <description>from CRUKCI recent sequencing data currently on staging server</description>
+    <requirements></requirements>
+    <stdio>
+        <exit_code range="1:"/>
+    </stdio>
+    <!-- code file="get_list_of_files.py"/ -->
+    <command><![CDATA[
+        python $__tool_directory__/kickstart.py
+        --config $__tool_directory__/config.ini
+        --library $library
+        --output $output
+    ]]></command>
+    <inputs>
+        <param name="library" type="text"
+               label="The SLX id of the library to fetch."/>
+       <!-- param name="fastq_files" type="select"
+              label="Select files to import"
+              refresh_on_change="True"
+              multiple="True"
+              dynamic_options="find_sequencing_files(library)"/ -->
+    </inputs>
+    <outputs>
+        <data name="output" format="txt" label="${tool.name} for ${library}"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input" value="test.txt"/>
+            <output name="output" file="hello.txt"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        To use this tool enter the SLX id of the library to fetch.
+    ]]></help>
+    <citations/>
+</tool>

@@ -7,7 +7,7 @@ Upload sequencing data into Galaxy
 - write a tool that search for FASTQ/BAM files of certain projects or library identifiers (SLX-IDs) and import them into Galaxy
 - run a simple RNA-Seq workflow on the data imported in Galaxy using the in-house cluster
 
-## How to test this tool
+## How to install this tool
 
 1. Galaxy requires Python 2.7, to check your python version, run:
 
@@ -112,7 +112,7 @@ Upload sequencing data into Galaxy
   In the web interface, go to User > API Keys and click on 'Generate a new key now'
   Copy/Paste this key into the `galaxy_kickstart/config.ini` file on line `api-key = admin_galaxy_key`.
 
-7. Install dependencies
+7. Install standalone tool
 
   ```Bash
   $ python --version
@@ -122,14 +122,26 @@ Upload sequencing data into Galaxy
   $ pip install -r requirements.txt
   ```
 
-8. Run script
+  Run script outside Galaxy for testing
 
-  Activate your virtual environment first, and make sure Galaxy is running.
+    Activate your virtual environment first, and make sure Galaxy is running.
 
-  - To upload sequencing library SLX-12203 into Galaxy
-  ```Bash
-  python kickstart.py --library SLX-12203
-  ```
+    - To upload sequencing library SLX-12203 into Galaxy
+    ```Bash
+    python kickstart_cmd.py --library SLX-12203
+    ```
+
+  Adding new data type in Galaxy for uploading compressed fastq but does not seem to be the right type
+
+  - Edit datatypes_conf.xml for accepting compressed fastq files `<datatype extension="fq.gz" type="galaxy.datatypes.binary:CompressedZipArchive" display_in_upload="True"/>`
+
+8. Install tool in Galaxy
+
+  - Add tool in config/tool_conf.xml
+  - Install dependencies in Galaxy
+    `pip install configparser`
+  - Restart Galaxy
+
 
 ## Sequencing data location
 Currently all sequencing data files are located on the galaxy server in `/staging` under folders of this kind `/staging/160802_D00281L_0127_C9NPBANXX/fastq/`.
