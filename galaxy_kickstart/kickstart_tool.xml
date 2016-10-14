@@ -4,7 +4,7 @@
     <stdio>
         <exit_code range="1:"/>
     </stdio>
-    <code file="get_list_of_files.py"/>
+    <!-- code file="get_list_of_files.py"/ -->
     <command><![CDATA[
         python $__tool_directory__/kickstart.py
         --config $__tool_directory__/config.ini
@@ -14,11 +14,11 @@
     <inputs>
         <param name="library" type="text"
                label="The SLX id of the library to fetch."/>
-        <param name="fastq_files" type="select"
+        <!-- param name="fastq_files" type="select"
                label="Select files to import"
                refresh_on_change="True"
                multiple="True"
-               dynamic_options="find_sequencing_files(library, config_file=$__tool_directory__/config.ini)"/>
+               dynamic_options="find_sequencing_files(library, config)"/ -->
     </inputs>
     <outputs>
         <data name="output" format="txt" label="${tool.name} for ${library}"/>

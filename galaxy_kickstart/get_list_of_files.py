@@ -8,6 +8,8 @@ log = logging.getLogger('kickstart')
 
 
 def find_sequencing_files(library_id, config_file):
+    log.debug(library_id)
+    log.debug(config_file)
     # read config from ini file
     config = configparser.ConfigParser()
     config.read(config_file)
