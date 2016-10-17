@@ -112,32 +112,45 @@ Upload sequencing data into Galaxy
   In the web interface, go to User > API Keys and click on 'Generate a new key now'
   Copy/Paste this key into the `galaxy_kickstart/config.ini` file on line `api-key = admin_galaxy_key`.
 
-7. Install standalone tool
+7. Install tool in Galaxy
 
-  ```Bash
-  $ python --version
-  Python 2.7.11
-  $ virtualenv venv
-  $ source venv/bin/activate
-  $ pip install -r requirements.txt
+  - Add tool in `config/tool_conf.xml`
   ```
+  <tool file="crukci_tools/galaxy_kickstart/kickstart_tool.xml" />
+  ```
+  - Add new data type `fastqcompressed` in `config/datatypes_conf.xml`:
+  ```
+  <datatype extension="fastqcompressed" type="galaxy.datatypes.binary:CompressedFastq" display_in_upload="True"/>
+  ```
+  - Add new subclass `CompressedFastq` in `lib/galaxy/datatypes/binary.py`:
 
-  Run script outside Galaxy for testing
+  ```python
+  class CompressedFastq( CompressedArchive ):
+      """
+          Class describing an compressed fastq file
+          This class can be sublass'ed to implement archive filetypes that will not be unpacked by upload.py.
+      """
+      file_ext = "fq.gz"
 
-    Activate your virtual environment first, and make sure Galaxy is running.
+      def set_peek( self, dataset, is_multi_byte=False ):
+          if not dataset.dataset.purged:
+              dataset.peek = "Compressed fastq file"
+              dataset.blurb = nice_size( dataset.get_size() )
+          else:
+              dataset.peek = 'file does not exist'
+              dataset.blurb = 'file purged from disk'
 
-    - To upload sequencing library SLX-12203 into Galaxy
-    ```Bash
-    python kickstart_cmd.py --library SLX-12203
-    ```
+      def display_peek( self, dataset ):
+          try:
+              return dataset.peek
+          except:
+              return "Compressed fastq file (%s)" % ( nice_size( dataset.get_size() ) )
 
-  Adding new data type in Galaxy for uploading compressed fastq but does not seem to be the right type
 
-  - Edit datatypes_conf.xml for accepting compressed fastq files `<datatype extension="fq.gz" type="galaxy.datatypes.binary:CompressedZipArchive" display_in_upload="True"/>`
+  Binary.register_unsniffable_binary_ext("fq.gz")
 
-8. Install tool in Galaxy
-
-  - Add tool in config/tool_conf.xml
+  ```
+  
   - Install dependencies in Galaxy
     `pip install configparser`
   - Restart Galaxy
