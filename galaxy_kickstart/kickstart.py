@@ -60,7 +60,8 @@ def main():
     # and upload them into user's history
     sequencing_files = glob.glob("%s/*/fastq/%s*.fq.gz" % (data_config['library_root'], options.library_id))
     log.debug(sequencing_files)
-    for f in sequencing_files:
+    tool_message = ''
+    for i, f in enumerate(sequencing_files, start=1):
         # extract fastq filename and run folder
         path, fastq_filename = os.path.split(f)
         path, fastq_dir = os.path.split(path)
@@ -89,8 +90,9 @@ def main():
                 library_id=sequencing_galaxy_library['id'],
                 filesystem_paths=f,
                 folder_id=run_folder_in_galaxy['id'],
-                #file_type='fastqsanger',
+                file_type='fastqcompressed',
                 link_data_only='link_to_files')[0]
+            tool_message += '\t%s\t%s uploaded in data library %s\n' % (i, fastq_filename, data_config['galaxy_library_root'])
             # retrieve new library contents
             sequencing_galaxy_library_contents = gi.libraries.show_library(library_id=sequencing_galaxy_library['id'], contents=True)
             log.debug('>>> gi.libraries.show_library: %s' % sequencing_galaxy_library_contents)
@@ -98,12 +100,22 @@ def main():
 
         # upload file in user's current history from data library
         gi.histories.upload_dataset_from_library(user_current_history_id, fastq_file_in_galaxy['id'])
+        tool_message += '\t%s\t%s added into history\n' % (i, fastq_filename)
 
     # write output result file
     with open(options.output, 'w') as out:
+        out.write("--------------------------------------------------------------------------------\n")
+        out.write("--- Upload FASTQ files ---------------------------------------------------------\n")
+        out.write("--------------------------------------------------------------------------------\n")
         out.write("Library root: %s\n" % data_config['library_root'])
         out.write("Library ID: %s\n" % options.library_id)
-        out.write("Sequencing FASTQ files found: %s" % sequencing_files)
+        out.write("--------------------------------------------------------------------------------\n")
+        out.write("Sequencing FASTQ files found:\n")
+        for (i, f) in enumerate(sequencing_files, start=1):
+            out.write("\t%s\t%s\n" % (i, os.path.split(f)[-1]))
+        out.write("Sequencing FASTQ files uploaded:\n")
+        out.write(tool_message)
+        out.write("--------------------------------------------------------------------------------\n")
 
 
 if __name__ == "__main__":
