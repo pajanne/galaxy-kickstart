@@ -16,7 +16,9 @@
         <param name="user_api_key" type="text"
                label="Your current Galaxy API key." help="Copy or create one from the 'User' menu > 'API Keys'"/>
         <param name="library" type="text"
-               label="The SLX id of the library to fetch."/>
+               label="The SLX id of the library to fetch."
+               help="Enter the SLX id of the library to fetch. It needs to be of this format 'SLX-12203' starting with three uppercase letters 'SLX',
+               followed by a dash '-' sign and endding with the number which identifies your library."/>
         <param name="file_types" type="select" label="The type of files to upload." multiple="true" display="checkboxes">
            <option value="fastq" selected="true">Upload FASTQ files</option>
            <option value="bam">Upload BAM files</option>
@@ -32,9 +34,7 @@
         </test>
     </tests>
     <help><![CDATA[
-        To use this tool enter the SLX id of the library to fetch.
-        It needs to be of this format 'SLX-12203' starting with three uppercase letters 'SLX',
-        followed by a dash '-' sign and endding with the number which identifies your library.
+        To use this tool enter your Galaxy API key, the SLX id of the library to fetch and the type of files to upload.
     ]]></help>
     <citations/>
 </tool>
