@@ -1,4 +1,4 @@
-<tool id="kickstart" name="Upload FASTQ files" version="0.1.1">
+<tool id="kickstart" name="Upload sequencing files" version="0.1.2">
     <description>from CRUKCI recent sequencing data currently on staging server</description>
     <requirements></requirements>
     <stdio>
@@ -7,12 +7,20 @@
     <command><![CDATA[
         python $__tool_directory__/kickstart.py
         --config $__tool_directory__/config.ini
+        --userapikey $user_api_key
         --library $library
+        --filetypes $file_types
         --output $output
     ]]></command>
     <inputs>
+        <param name="user_api_key" type="text"
+               label="Your current Galaxy API key." help="Copy or create one from the 'User' menu > 'API Keys'"/>
         <param name="library" type="text"
                label="The SLX id of the library to fetch."/>
+        <param name="file_types" type="select" label="The type of files to upload." multiple="true" display="checkboxes">
+           <option value="fastq" selected="true">Upload FASTQ files</option>
+           <option value="bam">Upload BAM files</option>
+        </param>
     </inputs>
     <outputs>
         <data name="output" format="txt" label="${tool.name} for ${library}"/>
