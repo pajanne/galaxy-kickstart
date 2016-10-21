@@ -4,3 +4,15 @@ api-key = admin_galaxy_key
 [Data]
 library_root = /path/to/your/sequencing/run/folders
 galaxy_library_root = Sequencing
+[fastq]
+subfolder = fastq
+extension = fq.gz
+galaxy_type = fastqcompressed
+[contents]
+subfolder = fastq
+extension = contents.csv
+galaxy_type = csv
+[bam]
+subfolder = alignment
+extension = bam
+galaxy_type = bam

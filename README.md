@@ -105,6 +105,18 @@ Upload sequencing data into Galaxy
   [Data]
   library_root = /path/to/your/test-data/staging/
   galaxy_library_root = Sequencing
+  [fastq]
+  subfolder = fastq
+  extension = fq.gz
+  galaxy_type = fastqcompressed
+  [contents]
+  subfolder = fastq
+  extension = contents.csv
+  galaxy_type = csv
+  [bam]
+  subfolder = alignment
+  extension = bam
+  galaxy_type = bam
   ```
 
 6. Create API key
@@ -150,7 +162,7 @@ Upload sequencing data into Galaxy
   Binary.register_unsniffable_binary_ext("fq.gz")
 
   ```
-  
+
   - Install dependencies in Galaxy
     `pip install configparser`
   - Restart Galaxy
